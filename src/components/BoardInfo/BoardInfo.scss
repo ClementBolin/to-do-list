@@ -8,6 +8,7 @@
     border: none;
     border-radius: 5px;
     font-family: 'Courier Prime', monospace;
+    background-color: var(--primary);
     box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
 }
 
@@ -53,9 +54,17 @@
 
 // color
 
+
 // data 
-.board--data {
+
+.board--project {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.board--data-project {
+    display: flex;
+    flex: 1 0 21%;
     flex-direction: column;
     align-items: center;
     justify-content: center;

@@ -15,6 +15,9 @@ export function Home(props: any): any {
                 </div>
                 <Switch>
                     <Route path="/" />
+                    {/* <Route path="/mail" />
+                    <Route path="project" />
+                    <Route path="/contact" /> */}
                 </Switch>
             </Router>
         </div>
@@ -43,6 +46,16 @@ const FakeData = [
         totalIssue: 23,
     },
     {
+        projectName: "C",
+        totalIssue: 120,
+    },
+    {
+        projectName: "C",
+        totalIssue: 120,
+    },    {
+        projectName: "C",
+        totalIssue: 120,
+    },    {
         projectName: "C",
         totalIssue: 120,
     },

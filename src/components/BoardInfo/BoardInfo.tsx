@@ -1,4 +1,5 @@
 import React from 'react';
+import * as AiIcons from 'react-icons/ai';
 import './BoardInfo.scss'
 
 const STYLES = ['board--primary'];
@@ -39,25 +40,27 @@ export const BoardInfo = ({
 
     return (
         <div
-            className={`board ${checkBoardStyle} ${checkBoardSize} ${checkBoardColor}`}
+            className={`board  ${checkBoardSize} ${checkBoardColor}`}
             onClick={onClick}
         >
-            <p className={titleStyle} >{title}</p>
-            {type == "project" ? 
-                data?.map((item, i) => {
-                    return (
-                        <div className="board--data">
-                            <p>{item.projectName}</p>
-                            <p>Issue {item.totalIssue}</p>
-                        </div>
-                    )
-                })
-                :
-                <p>In developemnt</p>
-            }
-            {/* {content === undefined ? <p>{children}</p> : 
-            <div dangerouslySetInnerHTML={{__html: content}} />
-            } */}
+            <div className={`${checkBoardStyle}`}>
+                <p className={titleStyle} >{title}</p>
+            </div>
+                {type == "project" ? 
+                    <div className="board--project">
+                        {data?.map((item, i) => {
+                            return (
+                                <div className="board--data-project">
+                                    <p>{item.projectName}</p>
+                                    <p>Issue {item.totalIssue}</p>
+                                    <AiIcons.AiFillDelete />
+                                </div>
+                            )
+                        })}
+                    </div>
+                    :
+                    <p>In developemnt</p>
+                }
         </div>
     )
 }
