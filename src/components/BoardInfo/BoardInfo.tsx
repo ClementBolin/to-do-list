@@ -13,6 +13,8 @@ interface IPropsBoard {
     boardColor?: string;
     title?: string;
     content?: any;
+    data?: any[];
+    type?: any;
 }
 
 export const BoardInfo = ({
@@ -23,6 +25,8 @@ export const BoardInfo = ({
     boardColor,
     title,
     content,
+    data,
+    type,
 }: IPropsBoard, props: any) => {
     boardStyle = boardStyle === undefined ? "board--primary" : boardStyle;
     boardSize = boardSize === undefined ? "board--medium" : boardSize;
@@ -39,11 +43,21 @@ export const BoardInfo = ({
             onClick={onClick}
         >
             <p className={titleStyle} >{title}</p>
-            {content}
-            {content === undefined ? <p>{children}</p> : 
-            // <div dangerouslySetInnerHTML={{__html: content}} />
-            content
+            {type == "project" ? 
+                data?.map((item, i) => {
+                    return (
+                        <div className="board--data">
+                            <p>{item.projectName}</p>
+                            <p>Issue {item.totalIssue}</p>
+                        </div>
+                    )
+                })
+                :
+                <p>In developemnt</p>
             }
+            {/* {content === undefined ? <p>{children}</p> : 
+            <div dangerouslySetInnerHTML={{__html: content}} />
+            } */}
         </div>
     )
 }

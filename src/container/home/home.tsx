@@ -5,24 +5,12 @@ import { NavBar } from '../../components/NavBar/navBar'
 import "./home.css"
 
 export function Home(props: any): any {
-    let dataBoardInfo = ""
-
-    const createDataBoard = () => {
-        FakeData.map((item, i) => {
-            return (
-                <div>
-                    <p>{item.projectName}</p>
-                    <p>{item.totalIssue}</p>
-                </div>
-            )
-        })
-    }
     return (
         <div className="home">
             <Router>
                 <NavBar />
                 <div className="board-info-home">
-                    <BoardInfo content={() => createDataBoard()} boardSize="board--large" title="Projet Totals" >je suis un test</BoardInfo>
+                    <BoardInfo data={FakeData} boardSize="board--large" title="Projet Totals" type="project" >je suis un test</BoardInfo>
                     <BoardInfo boardSize="board--long" title="Stat projects">test</BoardInfo>
                 </div>
                 <Switch>
