@@ -22,9 +22,9 @@ export const Button = ({
     buttonSize,
     buttonColor
 }: IProps) => {
-    buttonStyle = buttonStyle == undefined ? "btn--primary" : buttonStyle
-    buttonSize = buttonSize == undefined ? "btn--medium" : buttonSize
-    buttonColor = buttonColor == undefined ? "primary" : buttonColor
+    buttonStyle = buttonStyle === undefined ? "btn--primary" : buttonStyle
+    buttonSize = buttonSize === undefined ? "btn--medium" : buttonSize
+    buttonColor = buttonColor === undefined ? "primary" : buttonColor
     
     const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : 'btn--primary';
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : 'btn--medium';

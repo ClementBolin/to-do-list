@@ -1,0 +1,54 @@
+:root {
+    --primary: #000000;
+}
+
+.board {
+    padding: 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Courier Prime', monospace;
+    box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+}
+
+// style
+
+.board--primary {
+    background-color: white;
+    color: black;
+    border: solid 1px white;
+    display: flex;
+    flex-direction: column;
+}
+
+// title
+
+.board--title {
+    align-self: center;
+    color: red;
+    font-family: 'Lato', sans-serif;
+    margin: 10px 0 30px 0;
+    font-size: 23px;
+}
+
+// size
+
+.board--medium {
+    width: 25%;
+    height: 27vh;
+    font-size: 14px;
+}
+
+.board--large {
+    width: 60%;
+    height: 25vh;
+    padding: 13px 14px;
+}
+
+.board--long {
+    width: 25%;
+    height: 70vh;
+    padding: 15px 10px;
+}
+
+// color
