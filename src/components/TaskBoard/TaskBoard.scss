@@ -1,0 +1,47 @@
+
+.task {
+    margin: 10px 10px 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Courier Prime', monospace;
+    box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+}
+
+// Style
+
+.task--primary {
+    border: solid 1px rgb(250, 246, 246);
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+// Size
+
+.task--medium {
+    width: 25%;
+    height: 85vh;
+}
+
+.task--small {
+    width: 20%;
+    height: 85vh;
+}
+
+// color
+
+.task--color-primary {
+    background-color: rgb(252, 250, 250);
+}
+
+// Other
+
+.task--title {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+// Effect

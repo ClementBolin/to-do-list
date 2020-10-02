@@ -23,7 +23,7 @@ const FakeData = [
         totalIssue: 34,
     },
     {
-        projectName: "Corewar",
+        projectName: "Lisa",
         totalIssue: 56,
     },
     {

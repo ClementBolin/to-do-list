@@ -1,6 +1,8 @@
 .project--container {
     display: flex;
+    background-color: rgb(240, 240, 247);
+    height: 91.5vh;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    flex-wrap: wrap;
 }
