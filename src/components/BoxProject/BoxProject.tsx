@@ -2,7 +2,7 @@ import React from 'react';
 import './BoxProject.scss';
 
 const STYLE = ['boxPr--primary'];
-const SIZE = ['boxPr--medium'];
+const SIZE = ['boxPr--medium', 'boxPr--task--md'];
 const COLOR = ['boxPr--color-primary'];
 
 interface IBoxProject {
@@ -30,6 +30,9 @@ export const BoxProject = ({
 
     return (
         <div className={`boxPr ${boxProjectStyle} ${boxProjectSize} ${boxProjectColor}`}>
+            <div className="boxPr--title">
+                <p>{title}</p>
+            </div>
         </div>
     )
 }

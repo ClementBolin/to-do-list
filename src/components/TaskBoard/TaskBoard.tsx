@@ -1,4 +1,5 @@
 import React from 'react';
+import { BoxProject } from '../BoxProject/BoxProject';
 import './TaskBoard.scss';
 
 const STYLE = ["task--primary"];
@@ -11,6 +12,8 @@ interface IPropsTask {
     taskColor?: string;
     taskSize?: string;
     title: string;
+    type?: string;
+    data?: any;
 }
 
 export const TaskBoard = ({
@@ -18,7 +21,9 @@ export const TaskBoard = ({
     taskStyle,
     taskColor,
     taskSize,
-    title
+    title,
+    type,
+    data,
 }: IPropsTask) => {
     taskStyle = taskStyle === undefined ? "task--primary" : taskStyle;
     taskColor = taskColor === undefined ? "task--medium" : taskColor;
@@ -33,6 +38,17 @@ export const TaskBoard = ({
             <div className="task--title">
                 <p>{title}</p>
             </div>
+            {type === "task--list" && 
+                <div>
+                    {data.projects.map((item: any, i: number) => {
+                                return (
+                                    <div>
+                                        <BoxProject title={item.name} boxProjectSize="boxPr--task--md" />
+                                    </div>
+                                )
+                    })}
+                </div>
+            }
         </div>
     )
 }
