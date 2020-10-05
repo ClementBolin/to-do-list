@@ -42,7 +42,7 @@ export const TaskBoard = ({
                 <div>
                     {data.projects.map((item: any, i: number) => {
                                 return (
-                                    <div>
+                                    <div style={{marginRight: "5%", marginLeft: "1%"}}>
                                         <BoxProject title={item.name} boxProjectSize="boxPr--task--md" />
                                     </div>
                                 )

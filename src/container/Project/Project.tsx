@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxProject } from '../../components/BoxProject/BoxProject';
+import { Button } from '../../components/button/Button';
 import { TaskBoard } from '../../components/TaskBoard/TaskBoard';
 import './Project.scss'
 
@@ -7,13 +7,8 @@ export function Project(): any {
     return (
         <div className="project--container">
             <CreateProjectList />
+            <Button buttonSize="btn--large" buttonStyle="btn--more" >+</Button>
         </div>
-    )
-}
-
-function Test(): any {
-    return (
-        <p>Hello</p>
     )
 }
 
@@ -69,5 +64,4 @@ const FakeDataProj = [
             }
         ]
     },
-
 ]

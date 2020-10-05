@@ -46,7 +46,7 @@ export const BoardInfo = ({
             <div className={`${checkBoardStyle}`}>
                 <p className={titleStyle} >{title}</p>
             </div>
-                {type == "project" ? 
+                {type === "project" ? 
                     <div className="board--project">
                         {data?.map((item, i) => {
                             return (

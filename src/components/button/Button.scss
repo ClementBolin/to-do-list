@@ -29,6 +29,13 @@
     transition: all 0.3s ease-out;
 }
 
+.btn--more {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    transition: all 0.6s ease-out;
+}
+
 // Size
 
 .btn--medium {
@@ -37,7 +44,7 @@
 }
 
 .btn--large {
-    padding: 12px 25px;
+    padding: 12px 45px;
     font-size: 16px;
 }
 
@@ -57,10 +64,16 @@
 
 // Transition
 
-.btn--large:hover, .btn--medium:hover, .btn--mobile:hover {
+.btn--primary:hover, .btn--outline:hover, .btn--mobile:hover {
     transition: all 0.3s ease-out;
-    background: white;
+    background: rgb(250, 246, 246);
     color: black;
+}
+
+.btn--more:hover {
+    transition: ease 1s ease-out;
+    background: #050f47;
+    color: white;
 }
 
 .btn--primary {

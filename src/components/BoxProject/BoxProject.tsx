@@ -29,7 +29,7 @@ export const BoxProject = ({
     const checkProjectColor = COLOR.includes(boxProjectColor) ? boxProjectColor : 'boxPr--color-primary';
 
     return (
-        <div className={`boxPr ${boxProjectStyle} ${boxProjectSize} ${boxProjectColor}`}>
+        <div className={`boxPr ${checkProjectStyle} ${checkProjectSize} ${checkProjectColor}`}>
             <div className="boxPr--title">
                 <p>{title}</p>
             </div>
