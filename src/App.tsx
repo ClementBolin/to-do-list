@@ -6,6 +6,7 @@ import { NavBar } from './components/NavBar/navBar';
 import { Project } from './container/Project/Project';
 import { Mail } from './container/Mail/Mail';
 import { Contact } from './container/Contact/Contact';
+import { BoardProjects } from './container/BoardProjects/BoardProjects';
 
 
 function App() {
@@ -15,9 +16,14 @@ function App() {
         <NavBar />
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/project' component={Project} />
-          <Route path='/mail' component={Mail} />
-          <Route path='/contact' component={Contact} />
+          <Route exact path='/project' component={Project} />
+          <Route exact path='/mail' component={Mail} />
+          <Route exact path='/contact' component={Contact} />
+          <Route path='/project/board/:name' render={(props: any) => {
+            return (
+              <BoardProjects title={props.match.params.name} onClick={() => console.log(props)} />
+            )
+          }} />
         </Switch>
       </Router>
     </div>

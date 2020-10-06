@@ -3,11 +3,22 @@ import { Button } from '../../components/button/Button';
 import { TaskBoard } from '../../components/TaskBoard/TaskBoard';
 import './Project.scss'
 
+const MAX_PROJECT = 3;
+
 export function Project(): any {
+
+    const lenThemeProject = (): number => {
+        let len = 0;
+        FakeDataProj.map((item, i) => len++)
+        return len
+    }
+
     return (
         <div className="project--container">
             <CreateProjectList />
-            <Button buttonSize="btn--large" buttonStyle="btn--more" >+</Button>
+            {lenThemeProject() <= MAX_PROJECT && 
+                <Button buttonSize="btn--large" buttonStyle="btn--more" >+</Button>
+            }
         </div>
     )
 }

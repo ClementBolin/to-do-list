@@ -7,3 +7,9 @@
   margin: 0;
   padding: 0;
 }
+
+.App {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(240, 240, 247);
+}

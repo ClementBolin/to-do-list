@@ -10,7 +10,8 @@ interface IBoxProject {
     boxProjectStyle?: string;
     boxProjectSize?: string;
     boxProjectColor?: string;
-    title?: string,
+    title?: string;
+    onClick?: any;
 }
 
 export const BoxProject = ({
@@ -18,7 +19,8 @@ export const BoxProject = ({
     boxProjectStyle,
     boxProjectSize,
     boxProjectColor,
-    title
+    title,
+    onClick
 }: IBoxProject) => {
     boxProjectStyle = boxProjectStyle === undefined ? 'boxPr--primary' : boxProjectStyle;
     boxProjectSize = boxProjectSize === undefined ? 'boxPr--medium' : boxProjectSize;
@@ -29,7 +31,7 @@ export const BoxProject = ({
     const checkProjectColor = COLOR.includes(boxProjectColor) ? boxProjectColor : 'boxPr--color-primary';
 
     return (
-        <div className={`boxPr ${checkProjectStyle} ${checkProjectSize} ${checkProjectColor}`}>
+        <div onClick={onClick} className={`boxPr ${checkProjectStyle} ${checkProjectSize} ${checkProjectColor}`}>
             <div className="boxPr--title">
                 <p>{title}</p>
             </div>

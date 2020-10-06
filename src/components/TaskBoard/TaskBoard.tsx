@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { BoxProject } from '../BoxProject/BoxProject';
 import './TaskBoard.scss';
 
@@ -32,6 +33,11 @@ export const TaskBoard = ({
     const checkTaskStyle = STYLE.includes(taskStyle) ? taskStyle : "task--primary";
     const checkTaskSize = SIZE.includes(taskSize) ? taskSize : "task--medium";
     const checkTaskColor = COLOR.includes(taskColor) ? taskColor : "task--color-primary";
+    const history = useHistory();
+
+    const onClickBoxProject = (title:  string) => {
+        history.push(`/project/board/${title}`);
+    }
 
     return (
         <div className={`task ${checkTaskStyle} ${checkTaskSize} ${checkTaskColor}`}>
@@ -43,7 +49,9 @@ export const TaskBoard = ({
                     {data.projects.map((item: any, i: number) => {
                                 return (
                                     <div style={{marginRight: "5%", marginLeft: "1%"}}>
-                                        <BoxProject title={item.name} boxProjectSize="boxPr--task--md" />
+                                        <BoxProject title={item.name} boxProjectSize="boxPr--task--md" onClick={() => {
+                                            onClickBoxProject(item.name)
+                                        }} />
                                     </div>
                                 )
                     })}
@@ -52,4 +60,3 @@ export const TaskBoard = ({
         </div>
     )
 }
-
