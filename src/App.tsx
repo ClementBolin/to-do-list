@@ -8,7 +8,6 @@ import { Mail } from './container/Mail/Mail';
 import { Contact } from './container/Contact/Contact';
 import { BoardProjects } from './container/BoardProjects/BoardProjects';
 
-
 function App() {
   return (
     <div className="App">

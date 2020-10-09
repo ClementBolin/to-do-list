@@ -16,11 +16,15 @@
     flex-direction: column;
 }
 
+.task--content {
+    margin-top: 4%;
+}
+
 // Size
 
 .task--medium {
     width: 25%;
-    height: 85vh;
+    height: 79vh;
 }
 
 .task--small {

@@ -1,0 +1,32 @@
+.taskI {
+    box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+// Style
+
+.taskI--primary {
+    border: solid 1px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+}
+
+// Size
+
+.taskI--medium {
+    width: 90%;
+    height: 5vh;
+}
+
+// Effect
+
+.taskI--primary:hover {
+    transition: all 0.2s ease-out;
+    color: white;
+    background-color: black;
+}

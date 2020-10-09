@@ -1,0 +1,20 @@
+.Board--title {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.Board--to-do {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 1000px) {
+    .Board--to-do {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }   
+}

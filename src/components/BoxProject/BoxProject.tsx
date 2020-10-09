@@ -1,9 +1,9 @@
 import React from 'react';
 import './BoxProject.scss';
 
-const STYLE = ['boxPr--primary'];
-const SIZE = ['boxPr--medium', 'boxPr--task--md'];
-const COLOR = ['boxPr--color-primary'];
+const STYLE = ['boxPr--primary', 'boxPr--title'];
+const SIZE = ['boxPr--medium', 'boxPr--task--md', 'boxPr--small'];
+const COLOR = ['boxPr--color-primary', 'boxPr--title-color'];
 
 interface IBoxProject {
     children?: any;
@@ -32,7 +32,7 @@ export const BoxProject = ({
 
     return (
         <div onClick={onClick} className={`boxPr ${checkProjectStyle} ${checkProjectSize} ${checkProjectColor}`}>
-            <div className="boxPr--title">
+            <div className="boxPr--title-it">
                 <p>{title}</p>
             </div>
         </div>

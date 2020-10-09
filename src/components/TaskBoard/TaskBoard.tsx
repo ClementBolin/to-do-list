@@ -15,6 +15,7 @@ interface IPropsTask {
     title: string;
     type?: string;
     data?: any;
+    content?: any;
 }
 
 export const TaskBoard = ({
@@ -25,6 +26,7 @@ export const TaskBoard = ({
     title,
     type,
     data,
+    content
 }: IPropsTask) => {
     taskStyle = taskStyle === undefined ? "task--primary" : taskStyle;
     taskColor = taskColor === undefined ? "task--medium" : taskColor;
@@ -47,16 +49,19 @@ export const TaskBoard = ({
             {type === "task--list" && 
                 <div>
                     {data.projects.map((item: any, i: number) => {
-                                return (
-                                    <div style={{marginRight: "5%", marginLeft: "1%"}}>
-                                        <BoxProject title={item.name} boxProjectSize="boxPr--task--md" onClick={() => {
-                                            onClickBoxProject(item.name)
-                                        }} />
-                                    </div>
-                                )
+                        return (
+                            <div style={{marginRight: "5%", marginLeft: "1%"}}>
+                                <BoxProject title={item.name} boxProjectSize="boxPr--task--md" onClick={() => {
+                                    onClickBoxProject(item.name)
+                                }} />
+                            </div>
+                        )
                     })}
                 </div>
             }
+            <div className="task--content" >
+                {content}
+            </div>
         </div>
     )
 }
