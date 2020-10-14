@@ -5,6 +5,7 @@ import (
 	// "os"
 	"net/http"
 
+	"github.com/ClementBolin/to-do-list/api/server/db"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +29,11 @@ func setupRouter() *gin.Engine {
 func main() {
 	// logError := log.New(os.Stderr, "", 0)
 	// Start server
-	r := setupRouter()
+	var dbMongo db.DBMongo
 
+	dbMongo.SetupDataBase()
+	defer dbMongo.Disconnect()
+
+	r := setupRouter()
 	r.Run(":8080")
 }
