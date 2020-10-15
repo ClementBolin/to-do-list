@@ -1,3 +1,5 @@
+![Go](https://github.com/ClementBolin/to-do-list/workflows/Go/badge.svg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
