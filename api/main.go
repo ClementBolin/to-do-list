@@ -1,9 +1,8 @@
 package main
 
 import (
-	// "log"
-	// "os"
 	"net/http"
+	"log"
 
 	"github.com/ClementBolin/to-do-list/api/server/db"
 	"github.com/gin-gonic/gin"
@@ -27,13 +26,15 @@ func setupRouter() *gin.Engine {
 }
 
 func main() {
-	// logError := log.New(os.Stderr, "", 0)
 	// Start server
 	var dbMongo db.DBMongo
 
-	dbMongo.SetupDataBase()
+	dbMongo.SetupMongoClient()
 	defer dbMongo.Disconnect()
-
+	if err := dbMongo.CreateDataBase("lol", []string{"ToDo", "InProgress", "Done"}); err != nil {
+		log.Println(err)
+	}
+	return
 	r := setupRouter()
 	r.Run(":8080")
 }
