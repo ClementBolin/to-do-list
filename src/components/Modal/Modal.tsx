@@ -38,7 +38,7 @@ export const Modal = ({
     const checkModalColors = COLORS.includes(modalColors) ? modalColors : "modal--primary-color";
 
     const [open, setOpen] = React.useState(false);
-    
+
     const handleClickOpen = () => {
         setOpen(true);
       };
@@ -51,7 +51,7 @@ export const Modal = ({
         return (
             <div>
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-              Open form dialog
+              +
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
               <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
@@ -64,7 +64,23 @@ export const Modal = ({
                   autoFocus
                   margin="dense"
                   id="name"
-                  label="Email Address"
+                  label="Title"
+                  type="email"
+                  fullWidth
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Content"
+                  type="email"
+                  fullWidth
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Date"
                   type="email"
                   fullWidth
                 />
@@ -74,7 +90,7 @@ export const Modal = ({
                   Cancel
                 </Button>
                 <Button onClick={handleClose} color="primary">
-                  Subscribe
+                  Create
                 </Button>
               </DialogActions>
             </Dialog>
