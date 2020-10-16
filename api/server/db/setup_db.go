@@ -74,9 +74,3 @@ func (db *DBMongo) CreateDataBase(name string, collection []string) error {
 	}
 	return nil
 }
-
-
-// InstertDocument : insert document in your collection
-// func (db *DBMongo) InsertDocument(dbName string) {
-
-// }

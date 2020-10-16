@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"log"
+	"net/http"
 
 	"github.com/ClementBolin/to-do-list/api/server/db"
 	"github.com/gin-gonic/gin"
@@ -31,9 +31,11 @@ func main() {
 
 	dbMongo.SetupMongoClient()
 	defer dbMongo.Disconnect()
-	if err := dbMongo.CreateDataBase("lol", []string{"ToDo", "InProgress", "Done"}); err != nil {
-		log.Println(err)
+	dbMongo.ConnectTo("toDoList")
+	if err := dbMongo.RemoveDocument("update test", "toDdo"); err != nil {
+		log.Fatalln(err)
 	}
+
 	return
 	r := setupRouter()
 	r.Run(":8080")

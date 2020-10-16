@@ -50,30 +50,30 @@ func TestCreateDataBase(t *testing.T) {
 	err := DBMongo.CreateDataBase("toDoList", []string{"ToDo", "InProgress", "Done"})
 	assert.EqualError(err, "Client not setup, use 'SetupMongoClient' function before", "test create data before setup client conenction")
 
-	DBMongo.SetupMongoClient()
-	err = DBMongo.CreateDataBase("toDoList", []string{"ToDo", "InProgress", "Done"})
-	assert.EqualError(err, "Data Base exist", "test create data base who exist")
-	
-	DBMongo.Disconnect()
-	DBMongo.SetupMongoClient()
-	err = DBMongo.CreateDataBase("troll", []string{"ToDo", "InProgress", "Done"})
-	assert.Nil(err, "test to create Data Base who's not exit")
-	DBMongo.Disconnect()
-
 	if err := execCleanDbScript(); err != nil {
 		log.Println(err)
 		return
 	}
+
+	DBMongo.SetupMongoClient()
+	err = DBMongo.CreateDataBase("toDoList", []string{"ToDo", "InProgress", "Done"})
+	assert.EqualError(err, "Data Base exist", "test create data base who exist")
+	DBMongo.Disconnect()
+
+	if err := execCleanDbScript(); err != nil {
+			log.Println(err)
+			return
+	}
+	DBMongo.SetupMongoClient()
+	err = DBMongo.CreateDataBase("troll", []string{"ToDo", "InProgress", "Done"})
+	DBMongo.Disconnect()
+	if err := execCleanDbScript(); err != nil {
+		log.Println(err)
+		return
+	}
+	assert.Nil(err, "test to create Data Base who's not exit")
+
 }
-
-// // Test insert document function
-// func TestInsertDocument(t *testing.T) {
-// 	assert := assert.New(t)
-
-// 	// Test before connection
-// 	// Test insert document in invalid db
-// 	// Test success document insert
-// }
 
 func execCleanDbScript() error {
 	addI := exec.Command("mongo", "--quiet --eval \"db = db.getSiblingDB('troll'); db.dropDatabase();\"")
