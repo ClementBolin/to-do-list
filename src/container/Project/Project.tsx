@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../../components/button/Button';
 import { TaskBoard } from '../../components/TaskBoard/TaskBoard';
+import { Modal } from '../../components/Modal/Modal';
 import './Project.scss'
 
 const MAX_PROJECT = 3;
@@ -16,8 +17,11 @@ export function Project(): any {
     return (
         <div className="project--container">
             <CreateProjectList />
-            {lenThemeProject() <= MAX_PROJECT && 
-                <Button buttonSize="btn--large" buttonStyle="btn--more" >+</Button>
+            {lenThemeProject() <= MAX_PROJECT &&
+                <div onClick={() => console.log("you click on add Project button")}>
+                    {/* <Button buttonSize="btn--large" buttonStyle="btn--more" >+</Button> */}
+                    <Modal show={true} />
+                </div>
             }
         </div>
     )
