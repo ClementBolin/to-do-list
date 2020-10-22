@@ -8,34 +8,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const STYLES = ["modal--primary"];
-const SIZES = ["modal--medium"];
-const COLORS = ["modal--primary-color"];
-
 interface IModal {
     children?: any;
     title?: string;
-    modalStyles?: string;
-    modalSizes?: string;
-    modalColors?: string;
-    show: boolean;
 }
 
 export const Modal = ({
     children,
     title,
-    modalColors,
-    modalSizes,
-    modalStyles,
-    show
 }: IModal) => {
-    modalColors = modalColors === undefined ? "modal--primary-color" : modalColors;
-    modalSizes = modalSizes === undefined ? "modal--medium" : modalSizes;
-    modalStyles = modalStyles === undefined ? "modal--primary" : modalStyles;
-
-    const checkModalStyles = STYLES.includes(modalStyles) ? modalStyles : "modal--primary";
-    const chekcModalSizes = SIZES.includes(modalSizes) ? modalSizes : "modal--medium";
-    const checkModalColors = COLORS.includes(modalColors) ? modalColors : "modal--primary-color";
 
     const [open, setOpen] = React.useState(false);
 
@@ -47,18 +28,15 @@ export const Modal = ({
         setOpen(false);
       };
 
-    if (show == true) {
         return (
             <div>
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
               +
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-              <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+              <DialogTitle id="form-dialog-title">Create Project</DialogTitle>
               <DialogContent>
                 <DialogContentText>
-                  To subscribe to this website, please enter your email address here. We will send updates
-                  occasionally.
                 </DialogContentText>
                 <TextField
                   autoFocus
@@ -96,7 +74,4 @@ export const Modal = ({
             </Dialog>
           </div>
         )
-    } else {
-        return null;
-    }
 }

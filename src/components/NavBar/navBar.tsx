@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
+import React, { useState, useEffect } from 'react';
+
+import * as FiIcons from 'react-icons/fi';
+
 import { Link } from 'react-router-dom';
 import './navBar.css'
 import { SideBarData } from './navBarData';
@@ -8,40 +9,55 @@ import { IconContext } from 'react-icons/lib';
 import { Button } from '../button/Button';
 
 export function NavBar(): any {
-    const [sidebar, setSideBar] = useState(false)
+    const [button, setButton] = useState(true);
+    const [menu, setMenu] = useState(true);
 
-    const showSideBar = () => setSideBar(!sidebar)
+    const showMenu = () => setMenu(!menu);
+
+    const showButton = () => {
+        if (window.innerWidth <= 990) {
+            setButton(false);
+            setMenu(false);
+        }
+        else
+            setButton(true);
+    }
+
+    useEffect(() => {
+        showButton();
+    }, []);
+
+    window.addEventListener('resize', showButton);
 
     return (
-        <>
-          <IconContext.Provider value={{color: 'white'}} >
+        <IconContext.Provider value={{color: 'white'}} >
             <div className="navbar">
-                <Link to="#" className="menu-bar">
-                    <FaIcons.FaBars onClick={showSideBar} />
-                </Link>
-                <p style={{marginLeft: "45%", color: "white", fontSize: "25px", marginRight: "35%", whiteSpace: "nowrap"}}>To Do List</p>
-                <Button buttonStyle="btn--outline" >SIGN UP</Button>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className="nav-menu-items">
-                        <li className="navbar-toggle">
-                            <Link to="#" className='menu-bar'>
-                                <AiIcons.AiOutlineClose onClick={showSideBar} />
-                            </Link>
-                        </li>
+                <div className="nav--container">
+                    <Link to="/" className="nav--logo">
+                        <p style={{color: "white"}}>To Do List</p>
+                    </Link>
+                    {button === true ? null : 
+                        <div className="nav--btn">
+                            <FiIcons.FiMenu onClick={showMenu}/>
+                        </div>
+                    }
+                    <div className={menu ? "nav--option active" : "nav--option"}>
                         {SideBarData.map((item, i) => {
                             return (
                                 <li key={i} className={item.cName} >
-                                    <Link to={item.path} >
+                                    <Link to={item.path} className="links--nave" onClick={showMenu}>
                                         {item.icon}
                                         <span>{item.title}</span>
                                     </Link>
                                 </li>
                             )
                         })}
-                    </ul>
-                </nav>
+                        <div className="nav--button">
+                            <Button buttonStyle="btn--outline" >SIGN UP</Button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </IconContext.Provider>
-        </>
+        </IconContext.Provider>
     )
 }

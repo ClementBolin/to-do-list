@@ -49,6 +49,7 @@ const ContentBoard = ({
                         </div>
                     )
                 }
+                return null;
             })}
         </div>
     )

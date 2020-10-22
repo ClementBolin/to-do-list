@@ -1,10 +1,9 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 
-	"github.com/ClementBolin/to-do-list/api/server/db"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,22 +20,20 @@ func setupRouter() *gin.Engine {
 		c.String(http.StatusOK, "project name : " + project)
 	})
 	// Projects
+	r.POST("/Project/add", func(c *gin.Context) {
+		buffer := make([]byte, 1024)
+		num, _ := c.Request.Body.Read(buffer)
+		body := string(buffer[0:num])
+		fmt.Println(body)
 
+	})
 	return r
 }
 
 func main() {
 	// Start server
-	var dbMongo db.DBMongo
 
-	dbMongo.SetupMongoClient()
-	defer dbMongo.Disconnect()
-	dbMongo.ConnectTo("toDoList")
-	if err := dbMongo.RemoveDocument("update test", "toDdo"); err != nil {
-		log.Fatalln(err)
-	}
-
-	return
 	r := setupRouter()
+
 	r.Run(":8080")
 }
