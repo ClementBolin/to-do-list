@@ -5,6 +5,7 @@
     border-radius: 5px;
     font-family: 'Courier Prime', monospace;
     box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+    overflow-x: scroll;
 }
 
 // Style
@@ -30,6 +31,11 @@
 .task--small {
     width: 20%;
     height: 85vh;
+}
+
+.task--mobile {
+    width: 80%;
+    height: 70vh;
 }
 
 // color

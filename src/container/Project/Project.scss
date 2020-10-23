@@ -6,3 +6,25 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.project--modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.project--content {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 990px) {
+    .project--container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: nowrap;
+        margin-top: 40px;
+    }
+}
