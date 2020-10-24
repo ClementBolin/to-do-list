@@ -2,6 +2,7 @@ import express from 'express';
 import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import { InsertOnDocument } from './insertDoc';
+import { GetDocument } from './getDoc';
 
 const app = express();
 const port = 8080;
@@ -13,7 +14,13 @@ app.use(cors());
 
 // Board project
 app.post("/boardProject/add", (req: express.Request, res: express.Response) => {
-    console.log("add board project");
+    InsertOnDocument("boardProject", req.body)
+        .then((data) => {
+            if (data) {
+                res.status(200).json({ type: "sucess", message: "task create with sucess" });
+            }
+        })
+        .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
 app.get("/boardProject/get", (req: express.Request, res: express.Response) => {
@@ -22,7 +29,13 @@ app.get("/boardProject/get", (req: express.Request, res: express.Response) => {
 
 // Project
 app.post("/project/add", (req: express.Request, res: express.Response) => {
-    console.log("add project");
+    InsertOnDocument("project", req.body)
+        .then((data) => {
+            if (data) {
+                res.status(200).json({ type: "sucess", message: "task create with sucess" });
+            }
+        })
+        .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
 app.get("/project/get", (req: express.Request, res: express.Response) => {
@@ -40,7 +53,11 @@ app.post("/task/add", (req: express.Request, res: express.Response) => {
         .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
-app.get("/task/get", (req: express.Request, res: express.Response) => console.log("get task"))
+app.get("/task/get", (req: express.Request, res: express.Response) => {
+    GetDocument("task", "toDo", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", data }))
+        .catch((err) => res.status(401).json({ type: "error", message: err }));
+})
 
 // Run server
 app.listen(port, () => {
