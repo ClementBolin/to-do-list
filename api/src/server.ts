@@ -17,14 +17,16 @@ app.post("/boardProject/add", (req: express.Request, res: express.Response) => {
     InsertOnDocument("boardProject", req.body)
         .then((data) => {
             if (data) {
-                res.status(200).json({ type: "sucess", message: "task create with sucess" });
+                res.status(200).json({ type: "sucess", message: "boardProject create with sucess" });
             }
         })
         .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
 app.get("/boardProject/get", (req: express.Request, res: express.Response) => {
-    console.log("get board project");
+    GetDocument("boardProject", "", req.body)
+        .then((data) => res.status(200).json({ type: "success", data }))
+        .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
 // Project
@@ -32,14 +34,16 @@ app.post("/project/add", (req: express.Request, res: express.Response) => {
     InsertOnDocument("project", req.body)
         .then((data) => {
             if (data) {
-                res.status(200).json({ type: "sucess", message: "task create with sucess" });
+                res.status(200).json({ type: "sucess", message: "project create with sucess" });
             }
         })
         .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
 app.get("/project/get", (req: express.Request, res: express.Response) => {
-    console.log("get projects");
+    GetDocument("project", "", req.body)
+        .then((data) => res.status(200).json({ type: "success", data }))
+        .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
 // Task

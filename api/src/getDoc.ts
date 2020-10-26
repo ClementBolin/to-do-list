@@ -24,6 +24,23 @@ export function GetDocument(type: string, tag: string, body: any): Promise<ITask
                         });
                     }
                     return resolve(task);
+                case "boardProject":
+                    collection = dbo.collection("BoardProject");
+                    res = await collection.find();
+                    let BoardProject: IBoardProject[] = [];
+                    if (res !== null) {
+                        await res.forEach((item: IBoardProject) => BoardProject.push(item));
+                    }
+                    return resolve(BoardProject);
+                case "project":
+                    collection = dbo.collection("Project");
+                    res = await collection.find();
+                    let Project: IProject[] = [];
+                    if (res !== null)
+                        await res.forEach((item: IProject) => Project.push(item))
+                    return resolve(Project);
+                default:
+                    return rejects("Bad type vaule");
             }
         } catch(err) {
             return rejects(err)
