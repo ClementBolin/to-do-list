@@ -6,10 +6,20 @@ import { Modal } from '../../components/Modal/Modal';
 
 import './BoardProjects.scss';
 import { DialogContent, DialogContentText, TextField } from '@material-ui/core';
+import { createTaskSV } from '../../services/TaskSV';
 
 interface IBoardProjects {
-    title?: string;
+    title: string;
     onClick?: any;
+}
+
+function getActualDate(): string {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yy = String(today.getFullYear());
+
+    return dd + "/" + mm + "/" + yy;
 }
 
 export function BoardProjects({
@@ -40,9 +50,7 @@ export function BoardProjects({
             <div className="Board--to-do">
                 <TaskBoard title="To Do" taskSize={mobile ? "task--mobile" : "task--medium"} >
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => {
-                            alert("form submit")
-                        }}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate())}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField

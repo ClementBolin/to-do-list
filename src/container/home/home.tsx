@@ -7,7 +7,7 @@ export function Home(props: any): any {
         <div className="home">
                 <div className="board-info-home">
                     <BoardInfo data={FakeData} boardSize="board--large" title="Projet Totals" type="project" >je suis un test</BoardInfo>
-                    <BoardInfo boardSize="board--long" title="Stat projects">test</BoardInfo>
+                    <BoardInfo boardSize="board--large" title="Stat projects">test</BoardInfo>
                 </div>
         </div>
     )

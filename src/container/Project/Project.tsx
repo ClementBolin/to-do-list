@@ -6,6 +6,8 @@ import { DialogContent, TextField } from '@material-ui/core';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { BoxProject } from '../../components/BoxProject/BoxProject';
 import { useHistory } from 'react-router-dom';
+import { CreateBoardProjectSV } from '../../services/BoardProjectSV';
+import { createProjectSV } from '../../services/ProjectSV';
 
 const MAX_PROJECT = 3;
 
@@ -22,11 +24,9 @@ export function Project(): any {
         <div className="project--container">
             {lenThemeProject() <= MAX_PROJECT &&
                 <div onClick={() => console.log("you click on add Project button")}>
-                    <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => {
-                        alert("form submit")
-                    }}>
+                    <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => CreateBoardProjectSV(nameBoard)} >
                         <DialogContent>
-                            <DialogContentText>Write Name of your Board Project. Your max board projects is to 3</DialogContentText>
+                            <DialogContentText>Write Name of your Folder Project. Your max board projects is to 3</DialogContentText>
                             <TextField
                                 required
                                 label="Name"
@@ -74,9 +74,7 @@ function CreateProjectList(): any {
                             taskSize={mobile ? "task--mobile" : "task--small"}
                         >
                         <div className="project--modal">
-                            <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => {
-                                alert("form submit")
-                            }}>
+                            <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => createProjectSV(nameProject, item.theme)}>
                                 <DialogContent>
                                     <DialogContentText>Write Name of your Board Project. Your max board projects is to 3</DialogContentText>
                                     <TextField
