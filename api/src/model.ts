@@ -7,6 +7,7 @@ export interface ITask {
     name: string;
     id: number;
     tag: string;
+    type: string;
 }
 
 export interface IBoardProject {

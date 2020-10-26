@@ -20,6 +20,7 @@ export function InsertOnDocument(type: string, body: any): Promise<boolean> {
                         name: body.name,
                         id: body.id,
                         tag: body.tag,
+                        type: body.type
                     };
                     etat = await collection.insertOne(task);
                     return resolve(true);
