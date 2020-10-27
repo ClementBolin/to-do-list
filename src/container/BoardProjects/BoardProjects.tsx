@@ -43,6 +43,17 @@ export function BoardProjects({
             setMobile(false)
     }
 
+    const lengthTask = (): string => {
+        let len = 0;
+        for (let i = 0; i !== listTask.length; i++) {
+            if (listTask[i].tag === title)
+                len++
+        }
+        console.log(len)
+        len++
+        return String(len)
+    }
+
     useEffect(() => {
         showMobile()
     }, []);
@@ -57,7 +68,7 @@ export function BoardProjects({
             <div className="Board--to-do">
                 <TaskBoard title="To Do" taskSize={mobile ? "task--mobile" : "task--medium"} >
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate(), "To Do", 0)}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV("#" + lengthTask() + " " + nameTask, title, getActualDate(), "To Do")}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField
@@ -73,7 +84,7 @@ export function BoardProjects({
                 </TaskBoard>
                 <TaskBoard title="In Progress" taskSize={mobile ? "task--mobile" : "task--medium"} >
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate(), "In Progress", 0)}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV("#" + lengthTask() + " " + nameTask, title, getActualDate(), "In Progress")}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField
@@ -89,7 +100,7 @@ export function BoardProjects({
                 </TaskBoard>
                 <TaskBoard title="Done" taskSize={mobile ? "task--mobile" : "task--medium"}>
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate(), "Done", 0)}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV("#" + lengthTask() + " " + nameTask, title, getActualDate(), "Done")}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField

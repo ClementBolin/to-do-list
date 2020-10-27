@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './navBar.css'
 import { SideBarData } from './navBarData';
 import { IconContext } from 'react-icons/lib';
-import { Button } from '../button/Button';
 
 export function NavBar(): any {
     const [button, setButton] = useState(true);
@@ -52,9 +51,9 @@ export function NavBar(): any {
                                 </li>
                             )
                         })}
-                        <div className="nav--button">
+                        {/* <div className="nav--button">
                             <Button buttonStyle="btn--outline" >SIGN UP</Button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

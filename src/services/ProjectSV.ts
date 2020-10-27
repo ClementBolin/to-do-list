@@ -21,6 +21,8 @@ export async function getProjectSV(): Promise<IProject[]> {
     const response = await fetch("http://localhost:8080/project/get", option);
     const res2 = await response.json();
     let project: IProject[] = [];
+    if (res2.type === "error")
+        return project
     res2.data.forEach((item: IProject) => project.push(item))
     return project
 }

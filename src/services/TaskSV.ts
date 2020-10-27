@@ -1,6 +1,6 @@
 import { ITask } from "./models/services.models";
 
-export async function createTaskSV(name: string, tag: string, date: string, type: string, id: number) {
+export async function createTaskSV(name: string, tag: string, date: string, type: string) {
     const option = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -9,7 +9,6 @@ export async function createTaskSV(name: string, tag: string, date: string, type
             tag: tag,
             date: date,
             type: type,
-            id: id
         })
     }
     await fetch("http://localhost:8080/task/add", option);
@@ -24,7 +23,9 @@ export async function getTaskSV(): Promise<ITask[]> {
     const response = await fetch("http://localhost:8080/task/get", option);
     const res2 = await response.json();
     let task: ITask[] = [];
+    console.log(res2)
+    if (res2.type === "error")
+        return task
     res2.data.forEach((item: ITask) => task.push(item))
-    console.log(task)
     return task
 }
