@@ -6,19 +6,26 @@ import { DialogContent, TextField } from '@material-ui/core';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { BoxProject } from '../../components/BoxProject/BoxProject';
 import { useHistory } from 'react-router-dom';
-import { CreateBoardProjectSV } from '../../services/BoardProjectSV';
-import { createProjectSV } from '../../services/ProjectSV';
+import { CreateBoardProjectSV, getBoardProjectSV } from '../../services/BoardProjectSV';
+import { createProjectSV, getProjectSV } from '../../services/ProjectSV';
+import { IBoardProject, IProject } from '../../services/models/services.models';
 
 const MAX_PROJECT = 3;
 
 export function Project(): any {
     const [nameBoard, setNameBoard] = useState('');
+    const [listBoard, setListBoard] = useState<IBoardProject[]>([]);
 
     const lenThemeProject = (): number => {
         let len = 0;
-        FakeDataProj.map((item, i) => len++)
+        listBoard.map((item, i) => len++)
         return len
     }
+
+    useEffect(() => {
+        getBoardProjectSV()
+            .then((data) => setListBoard(data));
+    }, [])
 
     return (
         <div className="project--container">
@@ -37,14 +44,21 @@ export function Project(): any {
                     </Modal>
                 </div>
             }
-            <CreateProjectList />
+            <CreateProjectList list={listBoard} />
         </div>
     )
 }
 
-function CreateProjectList(): any {
+interface IListBoard {
+    list: IBoardProject[]
+}
+
+function CreateProjectList({
+    list
+}: IListBoard): any {
     const [nameProject, setNameProject] = useState('');
     const [mobile, setMobile] = useState(false);
+    const [listProject, setListProject] = useState<IProject[]>([]);
 
     const showMobile = () => {
         if (window.innerWidth <= 990)
@@ -57,6 +71,11 @@ function CreateProjectList(): any {
         showMobile()
     }, []);
 
+    useEffect(() => {
+        getProjectSV()
+            .then((data) => setListProject(data))
+    }, [])
+
     window.addEventListener('resize', showMobile);
 
     const history = useHistory();
@@ -67,14 +86,14 @@ function CreateProjectList(): any {
 
     return (
         <>
-                {FakeDataProj.map((item, i: number) => {
+                {list.map((item: IBoardProject, i: number) => {
                     return (
                         <TaskBoard
-                            title={item.theme}
+                            title={item.name}
                             taskSize={mobile ? "task--mobile" : "task--small"}
                         >
                         <div className="project--modal">
-                            <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => createProjectSV(nameProject, item.theme)}>
+                            <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => createProjectSV(nameProject, item.name)}>
                                 <DialogContent>
                                     <DialogContentText>Write Name of your Board Project. Your max board projects is to 3</DialogContentText>
                                     <TextField
@@ -87,11 +106,12 @@ function CreateProjectList(): any {
                             </Modal>
                         </div>
                             <div>
-                            {item.projects.map((item: any, i: number) => {
+                            {listProject.map((itemPr: IProject, i: number) => {
+                                if (itemPr.tag === item.name)
                                 return (
                                     <div className="project--content">
-                                        <BoxProject title={item.name} boxProjectSize="boxPr--task--md" onClick={() => {
-                                            onClickBoxProject(item.name)
+                                        <BoxProject title={itemPr.name} boxProjectSize="boxPr--task--md" onClick={() => {
+                                            onClickBoxProject(itemPr.name)
                                         }} />
                                     </div>
                                 )

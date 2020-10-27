@@ -1,3 +1,5 @@
+import { IBoardProject } from "./models/services.models";
+
 export async function CreateBoardProjectSV(name: string) {
     const option = {
         method: 'POST',
@@ -7,5 +9,17 @@ export async function CreateBoardProjectSV(name: string) {
         })
     }
     const res = await fetch("http://localhost:8080/boardProject/add", option);
-    console.log(res.json());
+}
+
+export async function getBoardProjectSV(): Promise<IBoardProject[]> {
+    const myHeader = new Headers();
+    const option = {
+        method: 'GET',
+        headers: myHeader,
+    }
+    const response = await fetch("http://localhost:8080/boardProject/get", option);
+    const res2 = await response.json();
+    let boarproject: IBoardProject[] = [];
+    res2.data.forEach((item: IBoardProject) => boarproject.push(item))
+    return boarproject
 }
