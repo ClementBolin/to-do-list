@@ -9,8 +9,7 @@ export async function createProjectSV(name: string, tag: string) {
             tag: tag
         })
     }
-    const res = await fetch("http://localhost:8080/project/add", option);
-    console.log(res.json());
+    await fetch("http://localhost:8080/project/add", option);
 }
 
 export async function getProjectSV(): Promise<IProject[]> {
@@ -23,7 +22,6 @@ export async function getProjectSV(): Promise<IProject[]> {
     const res2 = await response.json();
     let project: IProject[] = [];
     res2.data.forEach((item: IProject) => project.push(item))
-    console.log(project);
     return project
 }
 

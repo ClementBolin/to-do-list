@@ -6,7 +6,8 @@ import { Modal } from '../../components/Modal/Modal';
 
 import './BoardProjects.scss';
 import { DialogContent, DialogContentText, TextField } from '@material-ui/core';
-import { createTaskSV } from '../../services/TaskSV';
+import { createTaskSV, getTaskSV } from '../../services/TaskSV';
+import { ITask } from '../../services/models/services.models';
 
 interface IBoardProjects {
     title: string;
@@ -28,6 +29,12 @@ export function BoardProjects({
 }: IBoardProjects): any {
     const [nameTask, setNameTask] = useState('');
     const [mobile, setMobile] = useState(false);
+    const [listTask, setListTask] = useState<ITask[]>([]);
+
+    useEffect(() => {
+        getTaskSV()
+            .then((data) => setListTask(data));
+    }, [])
 
     const showMobile = () => {
         if (window.innerWidth <= 990)
@@ -62,7 +69,7 @@ export function BoardProjects({
                             </DialogContent>
                         </Modal>
                     </div>
-                    <ContentBoard type="To Do" />
+                    <ContentBoard type="To Do" listTask={listTask} prName={title}/>
                 </TaskBoard>
                 <TaskBoard title="In Progress" taskSize={mobile ? "task--mobile" : "task--medium"} >
                     <div className="project--modal">
@@ -78,7 +85,7 @@ export function BoardProjects({
                             </DialogContent>
                         </Modal>
                     </div>
-                    <ContentBoard type="In Progress" />
+                    <ContentBoard type="In Progress" listTask={listTask} prName={title}/>
                 </TaskBoard>
                 <TaskBoard title="Done" taskSize={mobile ? "task--mobile" : "task--medium"}>
                     <div className="project--modal">
@@ -94,7 +101,7 @@ export function BoardProjects({
                             </DialogContent>
                         </Modal>
                     </div>
-                    <ContentBoard type="Done" />
+                    <ContentBoard type="Done" listTask={listTask} prName={title} />
                 </TaskBoard>
             </div>
         </>
@@ -103,19 +110,23 @@ export function BoardProjects({
 
 interface IContentBoardTask {
     type: string;
+    listTask: ITask[];
+    prName: string;
 }
 
 const TYPE = ["To Do", "In Progress", "Done"];
 
 const ContentBoard = ({
-    type
+    type,
+    listTask,
+    prName
 }: IContentBoardTask) => {
     const checkType = TYPE.includes(type) ? type : "error";
 
     return (
         <div>
-            {FakeDataToDo.map((item: any, i: number) => {
-                if (item.type === checkType) {
+            {listTask.map((item: ITask, i: number) => {
+                if (item.type === checkType && item.tag === prName) {
                     return (
                         <div style={{display: "flex", justifyContent:"center", marginBottom: "2%"}}>
                             <Task title={item.name} />
@@ -127,42 +138,3 @@ const ContentBoard = ({
         </div>
     )
 }
-
-const FakeDataToDo: any = [
-    // {
-    //     name: "#1 deleate",
-    //     type: "To Do"
-    // },
-    // {
-    //     name: "#2 create dialog",
-    //     type:"To Do"
-    // },
-    // {
-    //     name: "#3 create dialog compo",
-    //     type: "Done"
-    // },
-    // {
-    //     name: "#5 manage link",
-    //     type: "To Do"
-    // },
-    // {
-    //     name: "#6 create task ",
-    //     type:"In Progress"
-    // },
-    // {
-    //     name: "#3 create dialog compo",
-    //     type: "Done"
-    // },
-    // {
-    //     name: "#1 deleate",
-    //     type: "To Do"
-    // },
-    // {
-    //     name: "#2 create dialog",
-    //     type:"To Do"
-    // },
-    // {
-    //     name: "#3 create dialog compo",
-    //     type: "Done"
-    // }
-]

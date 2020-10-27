@@ -24,7 +24,6 @@ app.post("/boardProject/add", (req: express.Request, res: express.Response) => {
 })
 
 app.get("/boardProject/get", (req: express.Request, res: express.Response) => {
-    console.log("get project")
     GetDocument("boardProject", "", req.body)
         .then((data) => res.status(200).json({ type: "success", data }))
         .catch((err) => res.status(401).json({ type: "error", message: err }))

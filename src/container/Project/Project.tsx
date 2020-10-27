@@ -107,14 +107,16 @@ function CreateProjectList({
                         </div>
                             <div>
                             {listProject.map((itemPr: IProject, i: number) => {
-                                if (itemPr.tag === item.name)
-                                return (
-                                    <div className="project--content">
-                                        <BoxProject title={itemPr.name} boxProjectSize="boxPr--task--md" onClick={() => {
-                                            onClickBoxProject(itemPr.name)
-                                        }} />
-                                    </div>
-                                )
+                                if (itemPr.tag === item.name) {
+                                    return (
+                                        <div className="project--content">
+                                            <BoxProject title={itemPr.name} boxProjectSize="boxPr--task--md" onClick={() => {
+                                                onClickBoxProject(itemPr.name)
+                                            }} />
+                                        </div>
+                                    )
+                                }
+                                return null
                             })}
                             </div>
                         </TaskBoard>
@@ -123,41 +125,3 @@ function CreateProjectList({
         </>
     )
 }
-
-const FakeDataProj = [
-    {
-        theme: "CPE",
-        projects: [
-            {
-                name: "Corewar",
-                path: 'CPE/Corewar',
-            },
-            {
-                name: "test",
-                path: 'CPE/test',
-            },
-            {
-                name: "Dante",
-                path: 'CPE/Dante',
-            },
-            
-        ]
-    },
-    {
-        theme: "PI",
-        projects: [
-            {
-                name: "Gestion",
-                path: 'PI/Gestion',
-            },
-            {
-                name: "Transaction",
-                path: 'PI/Transaction',
-            },
-            {
-                name: "Droits",
-                path: 'PI/Droits',
-            }
-        ]
-    },
-]
