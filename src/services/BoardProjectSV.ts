@@ -8,7 +8,7 @@ export async function CreateBoardProjectSV(name: string) {
             name: name
         })
     }
-    const res = await fetch("http://localhost:8080/boardProject/add", option);
+    await fetch("http://localhost:8080/boardProject/add", option);
 }
 
 export async function getBoardProjectSV(): Promise<IBoardProject[]> {

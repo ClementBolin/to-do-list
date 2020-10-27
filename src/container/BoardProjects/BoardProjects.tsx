@@ -50,7 +50,7 @@ export function BoardProjects({
             <div className="Board--to-do">
                 <TaskBoard title="To Do" taskSize={mobile ? "task--mobile" : "task--medium"} >
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate())}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate(), "To Do", 0)}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField
@@ -66,9 +66,7 @@ export function BoardProjects({
                 </TaskBoard>
                 <TaskBoard title="In Progress" taskSize={mobile ? "task--mobile" : "task--medium"} >
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => {
-                            alert("form submit")
-                        }}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate(), "In Progress", 0)}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField
@@ -84,9 +82,7 @@ export function BoardProjects({
                 </TaskBoard>
                 <TaskBoard title="Done" taskSize={mobile ? "task--mobile" : "task--medium"}>
                     <div className="project--modal">
-                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => {
-                            alert("form submit")
-                        }}>
+                        <Modal title="+" titleDialog="Create Task Project" type="form" submitForm={() => createTaskSV(nameTask, title, getActualDate(), "Done", 0)}>
                             <DialogContent>
                                 <DialogContentText>Create Your Task Project</DialogContentText>
                                 <TextField
@@ -118,7 +114,7 @@ const ContentBoard = ({
 
     return (
         <div>
-            {FakeDataToDo.map((item, i) => {
+            {FakeDataToDo.map((item: any, i: number) => {
                 if (item.type === checkType) {
                     return (
                         <div style={{display: "flex", justifyContent:"center", marginBottom: "2%"}}>
@@ -132,41 +128,41 @@ const ContentBoard = ({
     )
 }
 
-const FakeDataToDo = [
-    {
-        name: "#1 deleate",
-        type: "To Do"
-    },
-    {
-        name: "#2 create dialog",
-        type:"To Do"
-    },
-    {
-        name: "#3 create dialog compo",
-        type: "Done"
-    },
-    {
-        name: "#5 manage link",
-        type: "To Do"
-    },
-    {
-        name: "#6 create task ",
-        type:"In Progress"
-    },
-    {
-        name: "#3 create dialog compo",
-        type: "Done"
-    },
-    {
-        name: "#1 deleate",
-        type: "To Do"
-    },
-    {
-        name: "#2 create dialog",
-        type:"To Do"
-    },
-    {
-        name: "#3 create dialog compo",
-        type: "Done"
-    }
+const FakeDataToDo: any = [
+    // {
+    //     name: "#1 deleate",
+    //     type: "To Do"
+    // },
+    // {
+    //     name: "#2 create dialog",
+    //     type:"To Do"
+    // },
+    // {
+    //     name: "#3 create dialog compo",
+    //     type: "Done"
+    // },
+    // {
+    //     name: "#5 manage link",
+    //     type: "To Do"
+    // },
+    // {
+    //     name: "#6 create task ",
+    //     type:"In Progress"
+    // },
+    // {
+    //     name: "#3 create dialog compo",
+    //     type: "Done"
+    // },
+    // {
+    //     name: "#1 deleate",
+    //     type: "To Do"
+    // },
+    // {
+    //     name: "#2 create dialog",
+    //     type:"To Do"
+    // },
+    // {
+    //     name: "#3 create dialog compo",
+    //     type: "Done"
+    // }
 ]
