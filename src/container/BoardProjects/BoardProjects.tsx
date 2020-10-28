@@ -140,7 +140,7 @@ const ContentBoard = ({
                 if (item.type === checkType && item.tag === prName) {
                     return (
                         <div style={{display: "flex", justifyContent:"center", marginBottom: "2%"}}>
-                            <Task title={item.name} />
+                            <Task title={item.name} deleate taskInfo={item} />
                         </div>
                     )
                 }

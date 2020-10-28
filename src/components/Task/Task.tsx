@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Task.scss';
+import * as RiIcons from 'react-icons/ri';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
+import { ITask } from '../../services/models/services.models';
 
 const STYLES = ["taskI--primary"];
 const SIZE = ["taskI--medium"];
 const COLOR = ["taskI--color-primary"];
 
-interface ITask {
+interface ITaskC {
     title: string;
     taskStyle?: any;
     taskSize?: any;
     taskColor?: any;
+    deleate?: boolean;
+    onClickDealete?: any;
+    taskInfo?: ITask;
 }
 
 export const Task = ({
@@ -17,16 +23,52 @@ export const Task = ({
     taskStyle,
     taskColor,
     taskSize,
-}: ITask) => {
+    deleate,
+    onClickDealete,
+    taskInfo
+}: ITaskC) => {
+    const [showInfo, setShowInfo] = useState(false);
+
+    const handleClickInfo = () => setShowInfo(!showInfo);
+
     const checkStyle = STYLES.includes(taskStyle) ? taskStyle : "taskI--primary";
     const checkSize = SIZE.includes(taskSize) ? taskSize : "taskI--medium";
     const checkColor = COLOR.includes(taskColor) ? taskColor : "taskI--color-primary";
 
     return (
         <div className={`taskI ${checkStyle} ${checkSize} ${checkColor}`}>
-            <p className="taskI--title">
+            <p className="taskI--title" onClick={() => handleClickInfo()} >
                 {title}
             </p>
+            {showInfo === true && taskInfo !== undefined  &&
+                <Dialog open={showInfo} onClose={handleClickInfo} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Modif task information</DialogTitle>
+                    <form onSubmit={() => { handleClickInfo() }}>
+                        <DialogContent>
+                            <DialogContentText>You can modified name and watch task attribute</DialogContentText>
+                            <TextField
+                                required
+                                label="Name" 
+                                defaultValue={taskInfo.name}
+                                fullWidth
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClickInfo} color="primary">
+                                Cancel
+                            </Button>
+                            <Button color="primary" type="submit">
+                                Create
+                            </Button>
+                        </DialogActions>
+                    </form>
+                </Dialog>
+            }
+            {deleate !== undefined &&
+                <span className="boxPr--bin" onClick={onClickDealete}>
+                    <RiIcons.RiDeleteBin2Fill />
+                </span>
+            }
         </div>
     )
 }

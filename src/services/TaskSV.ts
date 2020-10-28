@@ -23,7 +23,6 @@ export async function getTaskSV(): Promise<ITask[]> {
     const response = await fetch("http://localhost:8080/task/get", option);
     const res2 = await response.json();
     let task: ITask[] = [];
-    console.log(res2)
     if (res2.type === "error")
         return task
     res2.data.forEach((item: ITask) => task.push(item))

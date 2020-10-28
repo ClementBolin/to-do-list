@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IBoardProject } from '../../services/models/services.models';
 import './TaskBoard.scss';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
+
+import * as AiIcons from 'react-icons/ai';
 
 const STYLE = ["task--primary"];
 const SIZE = ["task--medium", 'task--small', "task--mobile"];
@@ -11,6 +15,7 @@ interface IPropsTask {
     taskColor?: string;
     taskSize?: string;
     title: string;
+    boardInfo?: IBoardProject;
 }
 
 export const TaskBoard = ({
@@ -19,7 +24,12 @@ export const TaskBoard = ({
     taskColor,
     taskSize,
     title,
+    boardInfo
 }: IPropsTask) => {
+    const [showInfo, setShowInfo] = useState(false);
+
+    const handleClickInfo = () => setShowInfo(!showInfo);
+
     taskStyle = taskStyle === undefined ? "task--primary" : taskStyle;
     taskColor = taskColor === undefined ? "task--medium" : taskColor;
     taskSize = taskSize === undefined ? "task--color-primary" : taskSize;
@@ -32,7 +42,34 @@ export const TaskBoard = ({
         <div className={`task ${checkTaskStyle} ${checkTaskSize} ${checkTaskColor}`}>
             <div className="task--title">
                 <p>{title}</p>
+                {boardInfo !== undefined &&
+                    <AiIcons.AiFillEdit onClick={() => handleClickInfo()} />
+                }
             </div>
+            {showInfo === true && boardInfo !== undefined  &&
+                <Dialog open={showInfo} onClose={handleClickInfo} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Modif task information</DialogTitle>
+                    <form onSubmit={() => { handleClickInfo() }}>
+                        <DialogContent>
+                            <DialogContentText>You can modified name and watch task attribute</DialogContentText>
+                            <TextField
+                                required
+                                label="Name" 
+                                defaultValue={boardInfo.name}
+                                fullWidth
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClickInfo} color="primary">
+                                Cancel
+                            </Button>
+                            <Button color="primary" type="submit">
+                                Create
+                            </Button>
+                        </DialogActions>
+                    </form>
+                </Dialog>
+            }
             {children}
         </div>
     )

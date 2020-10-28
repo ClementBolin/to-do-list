@@ -11,8 +11,8 @@ interface IModal {
   children?: any;
   type: string;
   submitForm?: any; 
-  ButtonStyle?: string;
   dialogSizeBtn?: string;
+  justModal?: boolean;
 }
 
 export const Modal = ({
@@ -21,11 +21,14 @@ export const Modal = ({
   children,
   type,
   submitForm,
-  ButtonStyle
+  justModal
 }: IModal) => {
 
   const [open, setOpen] = React.useState(false);
 
+  if (justModal !== undefined) {
+    setOpen(justModal);
+  }
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -36,13 +39,15 @@ export const Modal = ({
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={handleClickOpen} style={{width: "93%"}}>
-          {title}
-      </Button>
+      {justModal === undefined &&
+        <Button variant="contained" color="primary" onClick={handleClickOpen} style={{width: "93%"}}>
+            {title}
+        </Button>
+      }
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{titleDialog}</DialogTitle>
         {type === "form" ?
-            <form onSubmit={(e) => { e.preventDefault(); alert('Submitted form!'); submitForm() ;handleClose() }}>
+            <form onSubmit={(e) => { submitForm(); handleClose() }}>
                 {children}
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

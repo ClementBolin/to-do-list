@@ -19,6 +19,13 @@
     justify-content: center;
 }
 
+.project--bin {
+    align-self: center;
+    margin-top: 20%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 990px) {
     .project--container {
         display: flex;
