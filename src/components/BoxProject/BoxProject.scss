@@ -46,15 +46,8 @@
 // Color
 
 .boxPr--color-primary {
-    background: linear-gradient(
-        90deg,
-        rgba(20, 159, 255, 1) 0%,
-        rgba(17, 122, 255, 1) 100%
-      );
-    border-color: linear-gradient(
-        90deg,
-        rgba(20, 159, 255, 1) 0%,
-        rgba(17, 122, 255, 1) 100%);
+    background-color: rgb(255, 142, 49);
+    border-color: rgb(255, 142, 49);
 }
 
 .boxPr--title-color {

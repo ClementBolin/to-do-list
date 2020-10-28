@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Task.scss';
 import * as RiIcons from 'react-icons/ri';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { ITask } from '../../services/models/services.models';
 
 const STYLES = ["taskI--primary"];
@@ -15,8 +15,23 @@ interface ITaskC {
     taskColor?: any;
     deleate?: boolean;
     onClickDealete?: any;
-    taskInfo?: ITask;
+    taskInfo: ITask;
 }
+
+const currencies = [
+    {
+      value: 'To Do',
+      label: 'To Do',
+    },
+    {
+      value: 'In Progress',
+      label: 'In Progress',
+    },
+    {
+      value: 'Done',
+      label: 'Done',
+    },
+  ];
 
 export const Task = ({
     title,
@@ -28,6 +43,7 @@ export const Task = ({
     taskInfo
 }: ITaskC) => {
     const [showInfo, setShowInfo] = useState(false);
+    const [currency, setCurrency] = React.useState(taskInfo.type);
 
     const handleClickInfo = () => setShowInfo(!showInfo);
 
@@ -52,6 +68,20 @@ export const Task = ({
                                 defaultValue={taskInfo.name}
                                 fullWidth
                             />
+                            <TextField
+                                id="standard-select-currency"
+                                select
+                                label="Status"
+                                value={currency}
+                                onChange={(e) => setCurrency(e.target.value)}
+                                helperText="Please select your currency"
+                                >
+                                {currencies.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleClickInfo} color="primary">
