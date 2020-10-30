@@ -23,6 +23,7 @@ export function InsertOnDocument(type: string, body: any): Promise<boolean> {
                         type: body.type
                     };
                     etat = await collection.insertOne(task);
+                    db.close();
                     return resolve(true);
                 case "project":
                     collection = dbo.collection("Project");
@@ -31,6 +32,7 @@ export function InsertOnDocument(type: string, body: any): Promise<boolean> {
                         tag: body.tag,
                     };
                     etat = await collection.insertOne(project);
+                    db.close();
                     return resolve(true);
                 case "boardProject":
                     collection = dbo.collection("BoardProject");
@@ -38,8 +40,10 @@ export function InsertOnDocument(type: string, body: any): Promise<boolean> {
                         name: body.name
                     };
                     etat = await collection.insertOne(boardProject);
+                    db.close();
                     return resolve(true);
                 default:
+                    db.close();
                     return rejects("Bad type value");
             }
         } catch(err) {

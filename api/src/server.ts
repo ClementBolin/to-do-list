@@ -3,6 +3,8 @@ import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import { InsertOnDocument } from './insertDoc';
 import { GetDocument } from './getDoc';
+import { UpdateDoc } from './updateDoc';
+import { DeleteDoc } from './deleteDoc';
 
 const app = express();
 const port = 8080;
@@ -23,6 +25,12 @@ app.post("/boardProject/add", (req: express.Request, res: express.Response) => {
         .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
+app.post("/boardProject/update", (req: express.Request, res: express.Response) => {
+    UpdateDoc("boardProject", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", message: "board project update" }))
+        .catch((err) => res.status(401).json({ type: "error", err }));
+})
+
 app.get("/boardProject/get", (req: express.Request, res: express.Response) => {
     GetDocument("boardProject", "", req.body)
         .then((data) => res.status(200).json({ type: "success", data }))
@@ -40,6 +48,12 @@ app.post("/project/add", (req: express.Request, res: express.Response) => {
         .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
+app.post("/project/update", (req: express.Request, res: express.Response) => {
+    UpdateDoc("project", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", message: "project update" }))
+        .catch((err) => res.status(401).json({ type: "error", err }));
+})
+
 app.get("/project/get", (req: express.Request, res: express.Response) => {
     GetDocument("project", "", req.body)
         .then((data) => res.status(200).json({ type: "success", data }))
@@ -55,6 +69,18 @@ app.post("/task/add", (req: express.Request, res: express.Response) => {
             }
         })
         .catch((err) => res.status(401).json({ type: "error", message: err }))
+})
+
+app.post("/task/update", (req: express.Request, res: express.Response) => {
+    UpdateDoc("task", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", message: "task update" }))
+        .catch((err) => res.status(401).json({ type: "error", err }));
+})
+
+app.delete("/task/delete", (req: express.Request, res: express.Response) => {
+    DeleteDoc("task", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", message: "delete task" }))
+        .catch((err) => res.status(401).json({ type: "error", err}));
 })
 
 app.get("/task/get", (req: express.Request, res: express.Response) => {
