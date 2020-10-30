@@ -5,13 +5,13 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import * as RiIcons from 'react-icons/ri';
 import * as AiIcons from 'react-icons/ai';
 import { IProject } from '../../services/models/services.models';
+import { deleteProjectSV } from '../../services/ProjectSV';
 
 const STYLE = ['boxPr--primary', 'boxPr--title'];
 const SIZE = ['boxPr--medium', 'boxPr--task--md', 'boxPr--small'];
 const COLOR = ['boxPr--color-primary', 'boxPr--title-color'];
 
 interface IBoxProject {
-    children?: any;
     boxProjectStyle?: string;
     boxProjectSize?: string;
     boxProjectColor?: string;
@@ -23,7 +23,6 @@ interface IBoxProject {
 }
 
 export const BoxProject = ({
-    children,
     boxProjectStyle,
     boxProjectSize,
     boxProjectColor,
@@ -47,7 +46,7 @@ export const BoxProject = ({
 
     return (
         <div className={`boxPr ${checkProjectStyle} ${checkProjectSize} ${checkProjectColor}`}>
-            <div onClick={onClick} className="boxPr--title-it">
+            <div onClick={onClick} className={projectInfo === undefined ? "boxPr--title-it big" : "boxPr--title-it"}>
                 <p>{title}</p>
             </div>
             {showInfo === true && projectInfo !== undefined  &&
@@ -74,10 +73,10 @@ export const BoxProject = ({
                     </form>
                 </Dialog>
             }
-            {deleate !== undefined &&
+            {deleate !== undefined && projectInfo !== undefined &&
                 <span className="boxPr--bin">
-                    <RiIcons.RiDeleteBin2Fill onClick={() => console.log("deleate elem")}/>
                     <AiIcons.AiFillEdit onClick={() => handleClickInfo()} />
+                    <RiIcons.RiDeleteBin2Fill onClick={() => {deleteProjectSV(projectInfo.name, projectInfo.tag); window.location.reload(false)}}/>
                 </span>
             }
         </div>

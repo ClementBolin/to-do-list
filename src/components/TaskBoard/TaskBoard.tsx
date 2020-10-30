@@ -3,7 +3,9 @@ import { IBoardProject } from '../../services/models/services.models';
 import './TaskBoard.scss';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
 
+import * as RiIcons from 'react-icons/ri';
 import * as AiIcons from 'react-icons/ai';
+import { deleteBoardProjectSV } from '../../services/BoardProjectSV';
 
 const STYLE = ["task--primary"];
 const SIZE = ["task--medium", 'task--small', "task--mobile"];
@@ -43,7 +45,10 @@ export const TaskBoard = ({
             <div className="task--title">
                 <p>{title}</p>
                 {boardInfo !== undefined &&
-                    <AiIcons.AiFillEdit onClick={() => handleClickInfo()} />
+                    <div>
+                        <AiIcons.AiFillEdit onClick={() => handleClickInfo()} style={{cursor: "pointer", margin: "0 20px"}} />
+                        <RiIcons.RiDeleteBin2Fill style={{cursor: "pointer"}} onClick={() => { deleteBoardProjectSV(title); window.location.reload(false)}} />
+                    </div>
                 }
             </div>
             {showInfo === true && boardInfo !== undefined  &&

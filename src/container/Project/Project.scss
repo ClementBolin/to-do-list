@@ -1,6 +1,5 @@
 .project--container {
     display: flex;
-    background-color: rgb(240, 240, 247);
     height: 91.5vh;
     justify-content: center;
     align-items: center;
@@ -20,7 +19,9 @@
 }
 
 .project--bin {
-    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     font-size: 20px;
     cursor: pointer;
 }

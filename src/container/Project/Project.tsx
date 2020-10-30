@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 import { CreateBoardProjectSV, getBoardProjectSV } from '../../services/BoardProjectSV';
 import { createProjectSV, getProjectSV } from '../../services/ProjectSV';
 import { IBoardProject, IProject } from '../../services/models/services.models';
-import * as RiIcons from 'react-icons/ri';
 
 const MAX_PROJECT = 3;
 
@@ -120,9 +119,6 @@ function CreateProjectList({
                             }
                             return null
                         })}
-                        </div>
-                        <div className="project--bin">
-                            <RiIcons.RiDeleteBin2Fill />
                         </div>
                     </TaskBoard>
                 )

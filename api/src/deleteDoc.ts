@@ -11,6 +11,7 @@ export function DeleteDoc(type: string, body: any): Promise<boolean> {
         try {
             const db = await mongo.connect(DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
             const dbo = db.db(DB_NAME);
+            console.log(type)
             switch (type) {
                 case "task":
                     const task: ITask = {
@@ -30,6 +31,8 @@ export function DeleteDoc(type: string, body: any): Promise<boolean> {
                         name: body.name,
                         tag: body.tag,
                     }
+                    console.log(project)
+                    console.log(type)
                     await dbo.collection("Project").deleteOne(project, (err, res) => {
                         if (err) throw rejects(err);
                         console.log("document delete");
@@ -40,6 +43,7 @@ export function DeleteDoc(type: string, body: any): Promise<boolean> {
                     const board: IBoardProject = {
                         name: body.name,
                     }
+                    console.log(board)
                     await dbo.collection("BoardProject").deleteOne(board, (err, res) => {
                         if (err) throw rejects(err);
                         console.log("document delete");

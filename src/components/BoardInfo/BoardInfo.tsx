@@ -1,5 +1,6 @@
 import React from 'react';
 import * as AiIcons from 'react-icons/ai';
+import * as RiIcons from 'react-icons/ri';
 import './BoardInfo.scss'
 
 const STYLES = ['board--primary'];
@@ -54,6 +55,7 @@ export const BoardInfo = ({
                                     <p>{item.projectName}</p>
                                     <p>Issue {item.totalIssue}</p>
                                     <AiIcons.AiFillDelete />
+                                    <RiIcons.RiDeleteBin2Fill />
                                 </div>
                             )
                         })}
