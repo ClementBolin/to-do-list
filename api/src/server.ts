@@ -25,6 +25,12 @@ app.post("/boardProject/add", (req: express.Request, res: express.Response) => {
         .catch((err) => res.status(401).json({ type: "error", message: err }))
 })
 
+app.delete("/boardProject/delete", (req: express.Request, res: express.Response) => {
+    DeleteDoc("boardProject", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", message: "delete board Project" }))
+        .catch((err) => res.status(401).json({ type: "error", err}));
+})
+
 app.post("/boardProject/update", (req: express.Request, res: express.Response) => {
     UpdateDoc("boardProject", req.body)
         .then((data) => res.status(200).json({ type: "sucess", message: "board project update" }))
@@ -52,6 +58,12 @@ app.post("/project/update", (req: express.Request, res: express.Response) => {
     UpdateDoc("project", req.body)
         .then((data) => res.status(200).json({ type: "sucess", message: "project update" }))
         .catch((err) => res.status(401).json({ type: "error", err }));
+})
+
+app.delete("/project/delete", (req: express.Request, res: express.Response) => {
+    DeleteDoc("project", req.body)
+        .then((data) => res.status(200).json({ type: "sucess", message: "delete Project" }))
+        .catch((err) => res.status(401).json({ type: "error", err}));
 })
 
 app.get("/project/get", (req: express.Request, res: express.Response) => {
