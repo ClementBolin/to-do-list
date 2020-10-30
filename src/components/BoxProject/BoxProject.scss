@@ -46,8 +46,9 @@
 // Color
 
 .boxPr--color-primary {
-    background-color: rgb(255, 142, 49);
-    border-color: rgb(255, 142, 49);
+    background-color: rgb(223, 215, 215);
+    box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+    border-color: rgb(223, 215, 215);
 }
 
 .boxPr--title-color {

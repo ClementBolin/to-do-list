@@ -55,4 +55,12 @@
     font-family: 'Lato', sans-serif;
 }
 
+.task--title.active {
+    background-color: rgba(17, 24, 110, 0.863);
+    width: 95%;
+    height: 6vh;
+    border-radius: 4px;
+    color: white;
+}
+
 // Effect

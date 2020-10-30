@@ -43,7 +43,7 @@ export const TaskBoard = ({
 
     return (
         <div className={`task ${checkTaskStyle} ${checkTaskSize} ${checkTaskColor}`}>
-            <div className="task--title">
+            <div className={boardInfo !== undefined ? "task--title active" : "task--title active"}>
                 <p>{title}</p>
                 {boardInfo !== undefined &&
                     <div>

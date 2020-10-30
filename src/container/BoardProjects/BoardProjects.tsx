@@ -49,7 +49,6 @@ export function BoardProjects({
             if (listTask[i].tag === title)
                 len++
         }
-        console.log(len)
         len++
         return String(len)
     }

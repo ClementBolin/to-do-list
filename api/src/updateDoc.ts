@@ -26,7 +26,6 @@ export function UpdateDoc(type: string, body: any): Promise<boolean> {
                         tag: body.tag,
                         type: body.typeNew,
                     } }
-                    console.log(task)
                     await dbo.collection("Task").updateOne(task, newTask);
                     db.close();
                     return resolve(true);

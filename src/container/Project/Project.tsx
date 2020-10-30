@@ -30,7 +30,7 @@ export function Project(): any {
     return (
         <div className="project--container">
             {lenThemeProject() <= MAX_PROJECT &&
-                <div onClick={() => console.log("you click on add Project button")}>
+                <div>
                     <Modal title="+" titleDialog="Create Board Project" type="form" submitForm={() => CreateBoardProjectSV(nameBoard)} >
                         <DialogContent>
                             <DialogContentText>Write Name of your Folder Project. Your max board projects is to 3</DialogContentText>
