@@ -5,7 +5,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import * as RiIcons from 'react-icons/ri';
 import * as AiIcons from 'react-icons/ai';
 import { IProject } from '../../services/models/services.models';
-import { deleteProjectSV } from '../../services/ProjectSV';
+import { deleteProjectSV, updateProjectSV } from '../../services/ProjectSV';
 
 const STYLE = ['boxPr--primary', 'boxPr--title'];
 const SIZE = ['boxPr--medium', 'boxPr--task--md', 'boxPr--small'];
@@ -33,6 +33,7 @@ export const BoxProject = ({
     projectInfo
 }: IBoxProject) => {
     const [showInfo, setShowInfo] = useState(false);
+    const [newName, setNewName] = useState('');
 
     const handleClickInfo = () => setShowInfo(!showInfo);
 
@@ -52,12 +53,13 @@ export const BoxProject = ({
             {showInfo === true && projectInfo !== undefined  &&
                 <Dialog open={showInfo} onClose={handleClickInfo} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Modif task information</DialogTitle>
-                    <form onSubmit={() => { handleClickInfo() }}>
+                    <form onSubmit={() => { updateProjectSV(projectInfo.name, newName === '' ? projectInfo.name : newName, projectInfo.tag); handleClickInfo(); window.location.reload(false) }}>
                         <DialogContent>
                             <DialogContentText>You can modified name and watch task attribute</DialogContentText>
                             <TextField
                                 required
-                                label="Name" 
+                                label="Name"
+                                onChange={(e) => setNewName(e.target.value)}
                                 defaultValue={projectInfo.name}
                                 fullWidth
                             />

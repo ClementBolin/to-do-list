@@ -5,7 +5,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 import * as RiIcons from 'react-icons/ri';
 import * as AiIcons from 'react-icons/ai';
-import { deleteBoardProjectSV } from '../../services/BoardProjectSV';
+import { deleteBoardProjectSV, updateBoardProjectSV } from '../../services/BoardProjectSV';
 
 const STYLE = ["task--primary"];
 const SIZE = ["task--medium", 'task--small', "task--mobile"];
@@ -29,6 +29,7 @@ export const TaskBoard = ({
     boardInfo
 }: IPropsTask) => {
     const [showInfo, setShowInfo] = useState(false);
+    const [newName, setNewName] = useState('');
 
     const handleClickInfo = () => setShowInfo(!showInfo);
 
@@ -54,12 +55,13 @@ export const TaskBoard = ({
             {showInfo === true && boardInfo !== undefined  &&
                 <Dialog open={showInfo} onClose={handleClickInfo} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Modif task information</DialogTitle>
-                    <form onSubmit={() => { handleClickInfo() }}>
+                    <form onSubmit={() => { updateBoardProjectSV(boardInfo.name, newName === '' ? boardInfo.name : newName); handleClickInfo(); window.location.reload(false)}}>
                         <DialogContent>
                             <DialogContentText>You can modified name and watch task attribute</DialogContentText>
                             <TextField
                                 required
-                                label="Name" 
+                                label="Name"
+                                onChange={(e) => setNewName(e.target.value)}
                                 defaultValue={boardInfo.name}
                                 fullWidth
                             />

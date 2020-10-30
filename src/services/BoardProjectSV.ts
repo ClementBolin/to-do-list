@@ -36,8 +36,17 @@ export async function deleteBoardProjectSV(name: string): Promise<boolean> {
         headers: myHeader,
         body: JSON.stringify({ name: name })
     }
-    const response = await fetch(BASIC_URL + "boardProject/delete", option);
-    const resJ = await response.json();
-    console.log(resJ);
+    await fetch(BASIC_URL + "boardProject/delete", option);
     return (true);
+}
+
+export async function updateBoardProjectSV(name: string, nameNew: string) {
+    const myHeader = new Headers();
+    myHeader.append('Content-Type', 'application/json');
+    const option = {
+        method: 'POST',
+        headers: myHeader,
+        body: JSON.stringify({ name: name, nameNew: nameNew })
+    }
+    fetch(BASIC_URL + "boardProject/update", option);
 }

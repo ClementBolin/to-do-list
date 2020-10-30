@@ -3,6 +3,7 @@ import './Task.scss';
 import * as RiIcons from 'react-icons/ri';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { ITask } from '../../services/models/services.models';
+import { deleteTaskSV, updateTaskSV } from '../../services/TaskSV';
 
 const STYLES = ["taskI--primary"];
 const SIZE = ["taskI--medium"];
@@ -44,6 +45,7 @@ export const Task = ({
 }: ITaskC) => {
     const [showInfo, setShowInfo] = useState(false);
     const [currency, setCurrency] = React.useState(taskInfo.type);
+    const [newName, setNewName] = useState('');
 
     const handleClickInfo = () => setShowInfo(!showInfo);
 
@@ -59,12 +61,13 @@ export const Task = ({
             {showInfo === true && taskInfo !== undefined  &&
                 <Dialog open={showInfo} onClose={handleClickInfo} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Modif task information</DialogTitle>
-                    <form onSubmit={() => { handleClickInfo() }}>
+                    <form onSubmit={() => { updateTaskSV(taskInfo.name, newName !== ''? newName : taskInfo.name , taskInfo.tag, currency, taskInfo.type); handleClickInfo(); window.location.reload(false) }}>
                         <DialogContent>
                             <DialogContentText>You can modified name and watch task attribute</DialogContentText>
                             <TextField
                                 required
-                                label="Name" 
+                                label="Name"
+                                onChange={(e) => setNewName(e.target.value)}
                                 defaultValue={taskInfo.name}
                                 fullWidth
                             />
@@ -95,7 +98,7 @@ export const Task = ({
                 </Dialog>
             }
             {deleate !== undefined &&
-                <span className="boxPr--bin" onClick={onClickDealete}>
+                <span className="boxPr--bin" onClick={() => { deleteTaskSV(taskInfo.name, taskInfo.tag, taskInfo.type); window.location.reload(false) }}>
                     <RiIcons.RiDeleteBin2Fill />
                 </span>
             }

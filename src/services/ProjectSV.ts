@@ -37,7 +37,17 @@ export async function deleteProjectSV(name: string, tag: string): Promise<boolea
         headers: myHeader,
         body: JSON.stringify({ name: name, tag: tag })
     }
-    const response = await fetch(BASIC_URL + "project/delete", option);
-    const resJ = await response.json();
+    await fetch(BASIC_URL + "project/delete", option);
     return (true);
+}
+
+export async function updateProjectSV(name: string, nameNew: string, tag: string) {
+    const myHeader = new Headers();
+    myHeader.append('Content-Type', 'application/json');
+    const option = {
+        method: 'POST',
+        headers: myHeader,
+        body: JSON.stringify({ name: name, nameNew: nameNew, tag: tag })
+    }
+    fetch(BASIC_URL + "project/update", option);
 }
