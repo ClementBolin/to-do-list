@@ -16,6 +16,10 @@ install dependencies :
 the next step is to run API, for this go to ```api```folder with ```cd api && npm start```
 and finally launch the front application with ```npm start```
 
+### Run with docker
+
+For run this project with docker ``` docker-compose up``` and open ```http://localhost:3000/```on your web browser
+
 ## API
 
 For this small project I decided to develop my API in Node JS, express and as a database I decided to use MongoDB.
