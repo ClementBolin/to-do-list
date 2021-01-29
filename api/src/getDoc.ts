@@ -3,7 +3,7 @@ import mongodb from 'mongodb';
 import { resolve } from 'path';
 import { ITask, IBoardProject, IProject } from './model';
 
-const DB_URL = "mongodb://localhost:27017";
+const DB_URL = "mongodb://mongodb:27017";
 const DB_NAME = "toDoList";
 
 export function GetDocument(type: string, tag: string, body: any): Promise<ITask[] | IBoardProject[] | IProject[]> {
@@ -25,6 +25,7 @@ export function GetDocument(type: string, tag: string, body: any): Promise<ITask
                     }
                     return resolve(task);
                 case "boardProject":
+                    console.log("get Task")
                     collection = dbo.collection("BoardProject");
                     res = await collection.find();
                     let BoardProject: IBoardProject[] = [];

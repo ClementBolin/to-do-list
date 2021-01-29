@@ -3,7 +3,7 @@ import mongodb from 'mongodb';
 import { resolve } from 'path';
 import { IProject, ITask, IBoardProject } from './model';
 
-const DB_URL = "mongodb://localhost:27017";
+const DB_URL = "mongodb://mongodb:27017";
 const DB_NAME = "toDoList";
 
 export function InsertOnDocument(type: string, body: any): Promise<boolean> {
